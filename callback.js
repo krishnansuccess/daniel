@@ -6,7 +6,7 @@ window.addEventListener('message', function(event) {
     xmlDoc = parser.parseFromString(event.data,"text/xml");
     var token_result = xmlDoc.getElementsByTagName("result")[0].childNodes[0].nodeValue;
     console.log(xmlDoc.getElementsByTagName("result")[0]);
-    if(token_result == 'SUCCESS') {
+    if(token_result == 'OK') {
         var url=window.checkout.baseUrl+'/daniel/payment/result';
         jQuery.ajax({
             type: "POST",
