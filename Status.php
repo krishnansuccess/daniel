@@ -54,6 +54,8 @@ class Status extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+		print_r("Dpay In");
+		
         $resultRedirect = $this->resultRedirectFactory->create();
         $lastorderId = $this->_checkoutSession->getLastOrderId();
         $order = $this->orderRepository->get($lastorderId);
@@ -92,6 +94,9 @@ class Status extends \Magento\Framework\App\Action\Action
         $token = curl_exec($ch);
         // return $resultRedirect->setPath('checkout/cart');
         $params = $this->getRequest()->getParams();
+		print_r($token);
+		print_r($params);
+		
         try {
 
             $url = "https://daniels.infinitybuss.com/dpay/paymentservices.ashx";
@@ -124,7 +129,10 @@ class Status extends \Magento\Framework\App\Action\Action
                             <zipcode>'.$params['shippingAddrzipcode'].'</zipcode>
                         </shipping>
                     </paymentservices>';
-			
+					
+					
+			print_r($token_input_xml);
+			exit;
 			$error_message = date('Y-m-d H:i:s')." DPay Request: ".$token_input_xml."\n"; 
 			$log_file = $_SERVER['DOCUMENT_ROOT'].'/DPay/DPay.log';			
 			error_log($error_message, 3, $log_file);
