@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+               <item name="vendorreport_listing_data_source" xsi:type="string">Bd\Report\Model\ResourceModel\VendorReport\Grid\Collection</item>
+          </argument>
+        </arguments>
+    </type>
+
+      <type name="Bd\Report\Model\ResourceModel\VendorReport\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vendor_order_report_history</argument>
+            <argument name="eventPrefix" xsi:type="string">vendor_report_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">vendor_report_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Bd\Report\Model\ResourceModel\VendorReport</argument>
+        </arguments>
+    </type>
+	<type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="updatepartnumber" xsi:type="object">Bd\Report\Console\ExcuteCron</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--preference for="Magento\Framework\Mail\Message" type="Bd\Report\Model\Mail\Message"/ -->
+
+</config>
