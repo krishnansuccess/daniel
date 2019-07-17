@@ -10,6 +10,12 @@
     <type name="Magento\Wishlist\Model\Item">
         <plugin name="ModifyWishlistItemPrice" type="MageWorx\OptionFeatures\Plugin\ModifyWishlistItemPrice" sortOrder="10" disabled="false"/>
     </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="ReatailPrice" type="MageWorx\OptionFeatures\Plugin\UpdateProductPrices" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options">
+        <plugin name="ReatailPriceOption" type="MageWorx\OptionFeatures\Plugin\UpdateProductOptions" sortOrder="10" disabled="false"/>
+    </type>
     <type name="Magento\Catalog\Pricing\Price\CustomOptionPriceCalculator">
         <plugin name="CustomAttributeBasedPrice" type="MageWorx\OptionFeatures\Plugin\ArroundCustomOptionPriceCalculator" sortOrder="10" disabled="false"/>
     </type>
