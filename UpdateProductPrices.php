@@ -53,7 +53,7 @@ class UpdateProductPrices {
             return $this;
         }
         $resultDecoded['prices']['retailPrice'] = [
-            'amount' => $_product->getRetailPrice(),
+            'amount' => (float)(number_format((float)($_product->getRetailPrice()), 2, '.', '')),
             
             //'amount' => $_product->getPriceInfo()->getPrice('retail_price')->getAmount()->getValue(),
             'adjustments' => []
