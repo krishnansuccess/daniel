@@ -50,11 +50,12 @@ class UpdateProductOptions {
         $resultDecoded = $this->jsonDecoder->decode($result);
       //  return $result;
        // print_r($resultDecoded); die;
-        foreach ($resultDecoded as $id => $option) {
+        foreach ($resultDecoded as $id => $options) {
+            foreach ($options as $optionId => $option) {
           
-            $resultDecoded[$id][$id]['prices']['retailPrice'] = $option[$id]['prices']['finalPrice'];
+            $resultDecoded[$id][$optionId]['prices']['retailPrice'] = $options[$optionId]['prices']['finalPrice'];
         }
-
+        }
         $resultEncoded = $this->jsonEncoder->encode($resultDecoded);
 
         return $resultEncoded;
