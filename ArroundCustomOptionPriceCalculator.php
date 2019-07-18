@@ -12,7 +12,7 @@ class ArroundCustomOptionPriceCalculator
     {
      if ($optionValue->getPriceType() === ProductOptionValue::TYPE_PERCENT) {
             $basePrice = $optionValue->getOption()->getProduct()->getRetailPrice();
-            $price = $basePrice * ($optionValue->getData(ProductOptionValue::KEY_PRICE) / 100);
+            $price = round($basePrice * ($optionValue->getData(ProductOptionValue::KEY_PRICE) / 100));
            
             return $price;
         }
