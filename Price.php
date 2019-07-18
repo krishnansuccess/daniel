@@ -127,7 +127,7 @@ class Price
                 $originalValue->getPrice();
         }
 
-        return $price;
+        return round($price);
     }
 
     /**
