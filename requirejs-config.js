@@ -1,4 +1,10 @@
 var config = {
+	map: {
+        '*': {
+             configurable: 'ConfigurableProduct_UpdateSKU/js/configurable'
+        }
+    },
+	
     config: {
         mixins: {
             'Magento_ConfigurableProduct/js/configurable': {
