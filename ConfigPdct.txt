@@ -1,3 +1,8 @@
+Mini cart file
+/srv/public_html/app/design/frontend/Zemez/theme105/Magento_Weee
+
+
+
 Warranty Product
 https://daniels-uat.augmentes.net/owl-necklace-in-14k-white-and-yellow-gold.html
 
