@@ -1,3 +1,8 @@
+Price Reference :
+https://amdev.danielsjewelers.com/near-colorless-gd14yg-14-earrings-yg-in-f.html
+
+
+
 Mini cart file
 /srv/public_html/app/design/frontend/Zemez/theme105/Magento_Weee
 
