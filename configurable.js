@@ -555,8 +555,8 @@ define([
 		$(this.options.normalPriceLabelSelector).html('Clearance');
                 $(this.options.slyOldPriceSelector).show();
 		$('.percentage').show();
-		var oldPrice=parseFloat($('[data-price-type="oldPrice"]').attr('data-price-amount'));
-		var finalPrice=parseFloat($('[data-price-type="finalPrice"]').attr('data-price-amount'));
+		var oldPrice=parseFloat($('[data-price-type="oldPrice"]').attr('data-price-amount').find('span').html().replace(/[^0-9.-]+/g,""));
+		var finalPrice=parseFloat($('[data-price-type="finalPrice"]').attr('data-price-amount').find('span').html().replace(/[^0-9.-]+/g,""));
 		var percentage=Math.round(finalPrice*100/oldPrice);
 		$('.percentage-price').html(percentage+'% off');
 		$(this.options.slyOldPriceSelector).addClass('tier-price');
