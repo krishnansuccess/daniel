@@ -81,7 +81,7 @@ define([
         _initializeOptions: function () {
             var options = this.options,
                 gallery = $(options.mediaGallerySelector),
-                priceBoxOptions = $(this.options.priceHolderSelector).priceBox('option').priceConfig || null;
+                priceBoxOptions = $(this.options.priceHolderSelector).priceBox().priceBox('option', 'openOnFocus', true).priceConfig || null;
 
             if (priceBoxOptions && priceBoxOptions.optionTemplate) {
                 options.optionTemplate = priceBoxOptions.optionTemplate;
@@ -238,6 +238,9 @@ define([
          */
         _configure: function (event) {
             event.data._configureElement(this);
+            
+            $(this.nextSetting).prop('selectedIndex', 1);
+            $(this.nextSetting).trigger('change');
         },
 
         /**
@@ -354,6 +357,7 @@ define([
          * @param {*} element - Element associated with a configurable option.
          */
         _fillSelect: function (element) {
+            
             var attributeId = element.id.replace(/[a-z]*/, ''),
                 options = this._getAttributeOptions(attributeId),
                 prevConfig,
@@ -370,7 +374,9 @@ define([
             if (element.prevSetting) {
                 prevConfig = element.prevSetting.options[element.prevSetting.selectedIndex];
             }
+            var hashIndex = window.location.href.indexOf('#');
 
+            
             if (options) {
                 for (i = 0; i < options.length; i++) {
                     allowedProducts = [];
@@ -400,7 +406,12 @@ define([
                         element.options[index].config = options[i];
                         index++;
                     }
-
+                    
+                    
+                    
+  		if (hashIndex === -1 && i == 0) {
+                    this.options.values[attributeId] = options[i].id;
+                }
                     /* eslint-enable max-depth */
                 }
             }
@@ -541,9 +552,19 @@ define([
                 this.options.spConfig.optionPrices[optionId].oldPrice.amount !==
                 this.options.spConfig.optionPrices[optionId].finalPrice.amount
             ) {
+		$(this.options.normalPriceLabelSelector).html('Clearance');
                 $(this.options.slyOldPriceSelector).show();
+		$('.percentage').show();
+		var oldPrice=parseFloat($('[data-price-type="oldPrice"]').attr('data-price-amount'));
+		var finalPrice=parseFloat($('[data-price-type="finalPrice"]').attr('data-price-amount'));
+		var percentage=Math.round(finalPrice*100/oldPrice);
+		$('.percentage-price').html(percentage+'% off');
+		$(this.options.slyOldPriceSelector).addClass('tier-price');
             } else {
+		$(this.options.normalPriceLabelSelector).html('Sale');
                 $(this.options.slyOldPriceSelector).hide();
+		$('.percentage').hide();
+		$(this.options.slyOldPriceSelector).removeClass('tier-price');
             }
         },
 
@@ -564,7 +585,7 @@ define([
             if (shouldBeShown) {
                 $(this.options.normalPriceLabelSelector).show();
             } else {
-                $(this.options.normalPriceLabelSelector).hide();
+                //$(this.options.normalPriceLabelSelector).hide();
             }
         },
 
